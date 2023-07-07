@@ -1,6 +1,4 @@
 import Image from "next/image";
-import { binding } from "cf-bindings-proxy";
-import { D1Database } from "@cloudflare/workers-types";
 export const runtime = "edge";
 
 export default async function Home() {
