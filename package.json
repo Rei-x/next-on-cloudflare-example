@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "conc \"next dev\" \"npx cf-bindings-proxy\"",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -13,6 +13,7 @@
     "@types/react": "18.2.14",
     "@types/react-dom": "18.2.6",
     "autoprefixer": "10.4.14",
+    "cf-bindings-proxy": "^0.2.2",
     "eslint": "8.44.0",
     "eslint-config-next": "13.4.9",
     "next": "13.4.9",
@@ -23,6 +24,9 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
-    "@cloudflare/next-on-pages": "^1.2.0"
+    "@cloudflare/next-on-pages": "^1.2.0",
+    "@cloudflare/workers-types": "^4.20230628.0",
+    "concurrently": "^8.2.0",
+    "wrangler": "^3.1.2"
   }
 }
