@@ -1,19 +1,22 @@
 {
-  "name": "cloudflare-app",
+  "name": "dry-thunder-1a3a",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "conc \"next dev\" \"npx cf-bindings-proxy\"",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "pages:build": "npx @cloudflare/next-on-pages@1",
+    "pages:deploy": "npm run pages:build && wrangler pages deploy .vercel/output/static",
+    "pages:watch": "npx @cloudflare/next-on-pages@1 --watch",
+    "pages:dev": "npx wrangler pages dev .vercel/output/static --compatibility-flag=nodejs_compat"
   },
   "dependencies": {
     "@types/node": "20.4.0",
     "@types/react": "18.2.14",
     "@types/react-dom": "18.2.6",
     "autoprefixer": "10.4.14",
-    "cf-bindings-proxy": "^0.2.2",
     "eslint": "8.44.0",
     "eslint-config-next": "13.4.9",
     "next": "13.4.9",
@@ -25,8 +28,6 @@
   },
   "devDependencies": {
     "@cloudflare/next-on-pages": "^1.2.0",
-    "@cloudflare/workers-types": "^4.20230628.0",
-    "concurrently": "^8.2.0",
-    "wrangler": "^3.1.2"
+    "vercel": "^30.2.3"
   }
 }
