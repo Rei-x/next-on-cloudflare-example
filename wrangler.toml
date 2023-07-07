@@ -1,6 +1,6 @@
 name = "next-on-cloudflare"
 compatibility_date = "2023-06-28"
-compatibility_flags = ["nodejs_compat"]
+compatibility_flags = [ "nodejs_compat" ]
 
 [[d1_databases]]
 binding = "DB" # i.e. available in your Worker on env.DB
