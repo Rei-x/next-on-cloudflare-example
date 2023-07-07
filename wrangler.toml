@@ -3,6 +3,6 @@ compatibility_date = "2023-06-28"
 compatibility_flags = [ "nodejs_compat" ]
 
 [[d1_databases]]
-binding = "DB" # i.e. available in your Worker on env.DB
+binding = "DB"
 database_name = "test"
 database_id = "95b43f49-de17-401b-9a9b-34409ea198f0"
