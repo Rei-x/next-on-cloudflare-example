@@ -22,6 +22,8 @@ jobs:
       - name: Build
         run: npm run pages:build
 
+      
+
       - name: Publish to Cloudflare Pages
         uses: cloudflare/pages-action@v1
         with:

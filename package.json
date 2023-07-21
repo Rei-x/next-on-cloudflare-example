@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "npm run migrate && conc npm:dev:next npm:dev:proxy",
+    "dev": "npm run migrate:local && conc npm:dev:next npm:dev:proxy",
     "dev:next": "next dev",
     "dev:proxy": "npx cf-bindings-proxy",
-    "migrate": "npx wrangler d1 migrations apply next-on-pages --local",
+    "migrate:local": "npm run migrate -- --local",
+    "migrate": "npx wrangler d1 migrations apply next-on-pages",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

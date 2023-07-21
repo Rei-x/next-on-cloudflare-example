@@ -2,6 +2,8 @@
 
 This repo shows how to use cf-bindings-proxy to use D1 and KV in local development with NextJS.
 
+Deployed version: https://next-on-cloudflare-boy.pages.dev
+
 ## How to run?
 
 1. Install dependencies
