@@ -1,6 +1,5 @@
-import { db } from "./db";
 import { addData, removePost } from "./actions";
-import { kv } from "@/bindings";
+import { kv, db } from "@/bindings";
 
 export const runtime = "edge";
 
@@ -24,7 +23,12 @@ const TextArea = ({ label, name }: { label: string; name: string }) => (
 );
 
 export default async function Home() {
-  const data = await db.selectFrom("Post").selectAll().execute();
+  const { results: posts } = await db.prepare("SELECT * FROM Post").all<{
+    id: number;
+    title: string;
+    content: string;
+  }>();
+
   const pageViews = Number((await kv.get("pageViews")) ?? "0");
 
   await kv.put("pageViews", String(pageViews + 1));
@@ -32,7 +36,7 @@ export default async function Home() {
   return (
     <main className="flex min-h-screen items-center mx-auto flex-col p-24">
       <h1 className="text-2xl mb-4 font-bold">
-        Posts ({data.length}) - Page Views ({pageViews})
+        Posts ({posts.length}) - Page Views ({pageViews})
       </h1>
       <div className="flex gap-16 justify-center w-[800px]">
         <form action={addData} className="w-full flex flex-col gap-3">
@@ -46,9 +50,10 @@ export default async function Home() {
             Submit
           </button>
         </form>
+
         <div className="w-full flex gap-4 flex-col">
           <p className="text-lg">Posts</p>
-          {data.map((post) => (
+          {posts.map((post) => (
             <div className="border rounded-md shadow-sm p-4" key={post.id}>
               <div className="flex justify-between">
                 <h2 className="font-semibold">{post.title}</h2>

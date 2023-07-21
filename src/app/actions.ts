@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { db } from "./db";
+import { db } from "@/bindings";
 
 export async function addData(formData: FormData) {
   const title = formData.get("title");
@@ -16,11 +16,10 @@ export async function addData(formData: FormData) {
   }
 
   revalidatePath("/");
-  return db
-    .insertInto("Post")
-    .values({ title, content, updatedAt: new Date().toISOString() })
-    .returningAll()
-    .execute();
+  await db
+    .prepare("INSERT INTO Post (title, content, updatedAt) VALUES (?, ?, ?)")
+    .bind(title, content, new Date().toISOString())
+    .run();
 }
 
 export async function removePost(formData: FormData) {
@@ -33,5 +32,5 @@ export async function removePost(formData: FormData) {
   const idAsNumber = parseInt(id);
 
   revalidatePath("/");
-  return db.deleteFrom("Post").where("id", "=", idAsNumber).execute();
+  await db.prepare("DELETE FROM Post WHERE id = ?").bind(idAsNumber).run();
 }
