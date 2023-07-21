@@ -1,0 +1,11 @@
+compatibility_flags = ["nodejs_compat"]
+
+kv_namespaces = [
+  { binding = "KV", id = "3269567ef70547d182a2150d16848a05", preview_id = "b58ae6883f8e4175900fc6c4d2e724e9" }
+]
+
+[[d1_databases]]
+binding = "DB" # i.e. available in your Worker on env.DB
+database_name = "next-on-pages"
+database_id = "8e427e40-f311-45ad-8b31-9e23c5cc3aff"
+
